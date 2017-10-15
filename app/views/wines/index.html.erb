@@ -1,0 +1,5 @@
+ <% if @wine.temp < @parsed["main"]['humidity'] %>
+ 		<h1> OK to Send <%= @wine.name %> </h1>
+ 	<% else %>
+ 		<h2> Wait </h2>
+<% end %>
