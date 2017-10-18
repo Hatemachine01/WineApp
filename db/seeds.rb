@@ -9,15 +9,15 @@
 
  
 #Customers
-@customer_1 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: Faker::Address.zip_code)
+@customer_1 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: 77001)
 
-@customer_2 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: Faker::Address.zip_code)
+@customer_2 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: 20001)
 
-@customer_3 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: Faker::Address.zip_code)
+@customer_3 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: 99501)
 
-@customer_4 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: Faker::Address.zip_code)
+@customer_4 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: 11220)
 
-@customer_5 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: Faker::Address.zip_code)
+@customer_5 =	Customer.create!(name:Faker::Name.name, last_name: Faker::Name.last_name, zipcode: 90001)
 
 
 
