@@ -7,18 +7,18 @@ has_many :wines
  	def should_send?(user_id)
  		api_key = AUTH_DETAILS['api_key']
 		user = Hash.new
-		customer = Customer.find(user_id)
+		@customer = Customer.find(user_id)
 		#here we made the API call with the customer's zipcode
-		open("http://api.wunderground.com/api/#{api_key}/forecast/q/#{customer.zipcode}.json") do |f|
+		open("http://api.wunderground.com/api/#{api_key}/forecast/q/#{@customer.zipcode}.json") do |f|
  	  		json_string = f.read
  	  		parsed_json = JSON.parse(json_string)
  	 		@info = parsed_json['forecast']['txt_forecast']['forecastday']	
  		end
-	  parser(@info)
+	  parser(@info, @customer)
  	end
 
 
- 	def parser(info)
+ 	def parser(info,customer)
 	#here we iterate through the response and use a regex to identify the temperature numbers from the rest of the data
    		info.each do |report|	
 		 	txt= report['fcttext']
@@ -39,8 +39,10 @@ has_many :wines
 		 				p	'CAN SHIP'
 		 			else
 		 				p   'CANT SHIP'
+		 			   Customer.update(customer.id, :can_send? => true )
+		 			  return
 		 			end
-		 	   end
+		 	end
  		end 
  	end
 end

@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20171014185240) do
     t.string "name"
     t.string "last_name"
     t.integer "zipcode"
+    t.boolean "can_send?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
