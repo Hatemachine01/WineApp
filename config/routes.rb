@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
 
-root "wines#index"
+root "customers#index"
 
 
 
