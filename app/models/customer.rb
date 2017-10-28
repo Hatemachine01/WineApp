@@ -5,6 +5,7 @@ has_many :wines
 
 
  	def should_send?(user_id)
+ 	
  		api_key = AUTH_DETAILS['api_key']
 		user = Hash.new
 		@customer = Customer.find(user_id)
@@ -36,14 +37,16 @@ has_many :wines
 		 	#here goes iteration that checks the range of the temperatures in the city
 				forecast.each do |n|
 		 			if n.between?(40,80)		
-		 				p	'CAN SHIP'
+		 					'CAN SHIP'
+		 				Customer.update(customer.id, :can_send? => true )
 		 			else
-		 				p   'CANT SHIP'
-		 			   Customer.update(customer.id, :can_send? => true )
-		 			  return
-		 			end
-		 	end
- 		end 
- 	end
+		 				    'CANT SHIP'
+		 				Customer.update(customer.id, :can_send? => false )
+		 				break
+		 			 end
+		 	end 
+ 		
+ 		end
+	end
 end
 
