@@ -39,8 +39,9 @@ has_many :wines
 		 				p	'CAN SHIP'
 		 			else
 		 				p   'CANT SHIP'
-		 		end
-		 	end
+		 			end
+		 	   end
  		end 
  	end
 end
+
