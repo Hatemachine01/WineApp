@@ -14,8 +14,13 @@ has_many :wines
  	  		parsed_json = JSON.parse(json_string)
  	 		@info = parsed_json['forecast']['txt_forecast']['forecastday']	
  		end
-   			#here we iterate through the response and use a regex to identify the temperature numbers from the rest of the data
-   		@info.each do |report|	
+	  parser(@info)
+ 	end
+
+
+ 	def parser(info)
+	#here we iterate through the response and use a regex to identify the temperature numbers from the rest of the data
+   		info.each do |report|	
 		 	txt= report['fcttext']
 			re1='.*?'	# Non-greedy match on filler
 			re2='(\\d+)'	# Integer Number 1
@@ -29,16 +34,13 @@ has_many :wines
 	 		 		forecast  << int1.to_i
 			 	end	
 		 	#here goes iteration that checks the range of the temperatures in the city
-
-		 		forecast.each do |n|
+				forecast.each do |n|
 		 			if n.between?(40,80)		
 		 				p	'CAN SHIP'
 		 			else
 		 				p   'CANT SHIP'
 		 		end
 		 	end
-
- 		end
-   	end
- 
+ 		end 
+ 	end
 end
