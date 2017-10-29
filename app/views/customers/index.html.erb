@@ -1,9 +1,9 @@
 <h1> Orders that can be sent </h1>
 <% @ready.each do |order| %>
-<p><%= order.id %> ||  <%= order.name %> </p>
+<p><%= order.id %> ||  <%= order.name %> || <%= order.zipcode %> </p>
 <% end %>
 
 <h2> Orders on Hold </h2>
 <% @not_ready.each do |order| %>
-<p><%= order.id %> ||  <%= order.name %> </p>
+<p><%= order.id %> ||  <%= order.name %> || <%= order.zipcode %> </p>
 <% end %>

@@ -5,7 +5,7 @@ has_many :wines
 
 
  	def should_send?(user_id)
- 	
+ 		#API CALL 
  		api_key = AUTH_DETAILS['api_key']
 		user = Hash.new
 		@customer = Customer.find(user_id)
@@ -21,6 +21,7 @@ has_many :wines
 
  	def parser(info,customer)
 	#here we iterate through the response and use a regex to identify the temperature numbers from the rest of the data
+   		@check_list = []
    		info.each do |report|	
 		 	txt= report['fcttext']
 			re1='.*?'	# Non-greedy match on filler
@@ -38,16 +39,19 @@ has_many :wines
 				forecast.each do |n|
 		 			if n.between?(40,80)		
 		 					'CAN SHIP'
-		 				Customer.update(customer.id, :can_send? => true )
+		 				@check_list << "OK"
 		 			else
 		 				    'CANT SHIP'
-		 				Customer.update(customer.id, :can_send? => false )
-		 				break
-		 			 end
-		 	end 
- 		
+		 				@check_list << "HOLD"						 			 
+		 			end
+		 		end 			
  		end
-
+ 		#checks if the order can be sent. If the weather is ideal it changes the can_send? attribute to true.
+ 		if @check_list.include?("HOLD")
+ 			Customer.update(customer.id, :can_send? => false )
+ 		else
+ 			Customer.update(customer.id, :can_send? => true )
+ 		end
 	end
 end
 
