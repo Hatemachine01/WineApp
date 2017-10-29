@@ -47,6 +47,7 @@ has_many :wines
 		 	end 
  		
  		end
+
 	end
 end
 
