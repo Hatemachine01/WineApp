@@ -7,7 +7,6 @@ has_many :wines
  	def should_send?(user_id)
  		#API CALL 
  		api_key = AUTH_DETAILS['api_key']
-		user = Hash.new
 		@customer = Customer.find(user_id)
 		#here we made the API call with the customer's zipcode
 		open("http://api.wunderground.com/api/#{api_key}/forecast/q/#{@customer.zipcode}.json") do |f|
